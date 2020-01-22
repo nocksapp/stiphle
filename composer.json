@@ -1,5 +1,5 @@
 {
-    "name": "davedevelopment/stiphle",
+    "name": "nocksapp/stiphle",
     "type": "library",
     "description": "Simple rate limiting/throttling for php",
     "keywords": ["throttle", "throttling", "rate limiting", "rate limit"],
