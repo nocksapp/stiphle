@@ -11,7 +11,7 @@ class Redis implements StorageInterface
     protected $lockWaitTimeout = 1000;
     protected $redisClient;
 
-    public function __construct(\Predis\Client $redisClient)
+    public function __construct(\Redis $redisClient)
     {
         $this->redisClient = $redisClient;
     }
@@ -31,7 +31,7 @@ class Redis implements StorageInterface
     {
         $start = microtime(true);
 
-        while (is_null($this->redisClient->set($this->getLockKey($key), 'LOCKED', 'PX', 3600, 'NX'))) {
+        while (is_null($this->redisClient->set($this->getLockKey($key), 'LOCKED'))) {
             $passed = (microtime(true) - $start) * 1000;
             if ($passed > $this->lockWaitTimeout) {
                 throw new LockWaitTimeoutException();
